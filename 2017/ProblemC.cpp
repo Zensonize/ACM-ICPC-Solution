@@ -39,19 +39,13 @@ int main() {
         }
     }
 
-    //found 1 --> 3 or 3 --> 1 or 1 --> 1 remove 1 | 2 ways check !remove second max
+    //find 1 --> 3 or 3 --> 1 or 1 --> 1 remove 1 | 2 ways check !remove second max
     for(int i=0;i<Y;i++){
         for(int j=0;j<X;j++){
             // < Find 1 --> 1 keep first value >
             if(ismax[i][j] == '1'){
                 for(int k=j+1;k<X;k++){
-                    //printf("checking Y:[%d],X:[%d] with Y:[%d],X:[%d] : ",i,j,i,k);
-                    if(ismax[i][j] == ismax[i][k]) {
-                        //printf("Y");
-                        ismax[i][k] = '0';
-                    }
-                    //else printf("No");
-                    //printf("\n");
+                    if(ismax[i][j] == ismax[i][k]) ismax[i][k] = '0';
                 }
             }
             // < Find 3 --> 1 keep 3 >
@@ -70,34 +64,14 @@ int main() {
         }
     }
 
-    /*
-    for(int i=0;i<Y;i++){
-        for(int j=0;j<X;j++){
-            if(ismax[i][j] == '1'){
-                for(int k=j+1;k<X;k++){
-                    if(ismax[i][j] == ismax[i][k]) {
-                        printf("Y");
-                    }
-                }
-            }
-        }
-        printf("\n");
-    }*/
-
-    //found 2 --> 3 or 3 --> 2 or 2 --> 2 remove 2 | 2 ways check !remove second max
+    //find 2 --> 3 or 3 --> 2 or 2 --> 2 remove 2 | 2 ways check !remove second max
 
     for(int j=0;j<X;j++){
         for(int i=0;i<Y;i++){
             // < Find 2 --> 2 keep first value >
             if(ismax[i][j] == '2'){
                 for(int k=i+1;k<Y;k++){
-                    //printf("checking Y:[%d],X:[%d] with Y:[%d],X:[%d] : ",i,j,i,k);
-                    if(ismax[i][j] == ismax[k][j]) {
-                        //printf("Y");
-                        ismax[i][k] = '0';
-                    }
-                    //else printf("No");
-                    //printf("\n");
+                    if(ismax[i][j] == ismax[k][j]) ismax[i][k] = '0';
                 }
             }
             // < Find 3 --> 2 keep 3 >
@@ -126,27 +100,7 @@ int main() {
         }
     }
 
-    // < For debugging >
-    for(int i=0;i<Y;i++){
-        printf("%d|",Smap[i]);
-        for (int j=0;j<X;j++){
-            printf("%c ",ismax[i][j]);
-        }
-        printf("\t");
-        for (int j=0;j<X;j++){
-            printf("%d ",box[i][j]);
-        }
-        if(i==(Y-1)) printf("\t Stolen: %d Boxes",steal);
-        printf("\n");
-    }
-    printf(" |");
-    for(int i=0;i<X+X-1;i++){
-        printf("-");
-    }
-    printf("\n |");
-    for(int i=0;i<X;i++){
-        printf("%d ",Fmap[i]);
-    }
+    printf("%d",steal);
 
     return 0;
 }
